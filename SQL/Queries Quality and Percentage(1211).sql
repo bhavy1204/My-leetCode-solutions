@@ -66,3 +66,61 @@ SELECT query_name , ROUND(SUM( rating / position )/count(query_name),2) as quali
 ROUND(sum(if(rating<3,1,0))/COUNT(query_name)*100,2) as poor_query_percentage
 FROM Queries
 group by query_name;
+
+
+-- Diff btw sum and count -- 
+-- Yes! You've nailed it! 🎯
+
+-- General Rule of Thumb
+-- ✅ Use SUM(IF(...)) when you have a condition (like counting specific cases).
+-- ✅ Use COUNT() when you just want to count rows (without conditions).
+
+-- 📌 Quick Examples for Better Understanding
+-- 1️⃣ Counting Total Rows (Just Counting, No Condition) → COUNT()
+-- sql
+-- Copy
+-- Edit
+-- SELECT COUNT(*) FROM Queries;
+-- ✔️ Counts all rows in the table, including NULLs.
+
+-- 2️⃣ Counting Non-Null Values in a Column → COUNT(column_name)
+-- sql
+-- Copy
+-- Edit
+-- SELECT COUNT(rating) FROM Queries;
+-- ✔️ Counts only non-null values in rating.
+
+-- 3️⃣ Counting Rows Based on a Condition (e.g., rating < 3) → SUM(IF(...))
+-- sql
+-- Copy
+-- Edit
+-- SELECT SUM(IF(rating < 3, 1, 0)) FROM Queries;
+-- ✔️ Adds 1 for every row where rating < 3, giving the count.
+-- ✔️ Works better than COUNT(IF(...)) because COUNT() doesn't handle conditions properly.
+
+-- 4️⃣ Calculating Percentage of Queries with Rating < 3
+-- sql
+-- Copy
+-- Edit
+-- SELECT 
+--     ROUND(SUM(IF(rating < 3, 1, 0)) / COUNT(*) * 100, 2) AS poor_query_percentage
+-- FROM Queries;
+-- ✔️ SUM(IF(rating < 3, 1, 0)) → Counts queries where rating < 3.
+-- ✔️ COUNT(*) → Counts all queries.
+-- ✔️ Division gives the percentage.
+
+-- 🔥 Pro Tip: Use COUNT(DISTINCT column_name) When Counting Unique Values
+-- sql
+-- Copy
+-- Edit
+-- SELECT COUNT(DISTINCT query_name) FROM Queries;
+-- ✔️ Counts the number of unique query names.
+
+-- 💡 Final Cheat Sheet
+-- Scenario	Use
+-- Total number of rows	COUNT(*)
+-- Count non-null values in a column	COUNT(column_name)
+-- Count rows matching a condition	SUM(IF(condition, 1, 0))
+-- Count unique values in a column	COUNT(DISTINCT column_name)
+-- Sum all values in a column	SUM(column_name)
+-- You got this! 🚀 Let me know if anything still feels unclear. 😊
