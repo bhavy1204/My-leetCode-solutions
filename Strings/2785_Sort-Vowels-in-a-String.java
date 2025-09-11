@@ -1,6 +1,6 @@
 /**
  * Problem: https://leetcode.com/problems/longest-common-subsequence/
- * Explanation: See ./README.md#2785_Sort-Vowels-in-a-String.java
+ * Explanation: See ./Explanations.md#2785-sort-vowels-in-a-stringjava
  */
 class Solution {
     public String sortVowels(String s) {
