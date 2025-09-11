@@ -1,6 +1,3 @@
-/**
- * Problem: https://github.com/bhavy1204/My-leetCode-solutions.git
- */
 class Solution {
     public String sortVowels(String s) {
         String vowles = "AEIOUaeiou";
